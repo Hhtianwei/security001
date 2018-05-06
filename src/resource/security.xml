@@ -1,0 +1,26 @@
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:b="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+	<http>
+		
+		<intercept-url pattern="/myLogin" access="permitAll" />
+		
+		
+		<intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />
+		
+		<!--  -->
+		<form-login login-page="/myLogin" login-processing-url="/myLogin" username-parameter="myName" password-parameter="myPass"/>
+		<logout />
+	</http>
+
+
+
+
+	<user-service>
+		<user name="a" authorities="ROLE_ADMIN" password="111111" />
+	</user-service>
+
+</b:beans>
